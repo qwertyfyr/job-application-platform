@@ -12,9 +12,12 @@ export function getCompaniesById(id: string) {
 
 export function createCompany(data: {id: string, name: string}) {
     // validation
+
+    
+
     return prisma.company.create({
         data: {
-            id: data.id.trim().toLowerCase(),
+            id: data.id.toLowerCase(),
             name: data.name
         }
     });

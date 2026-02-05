@@ -6,6 +6,6 @@ const port = 3000
 
 app.use(express.json())
 
-app.use("/api/listings",listingsRouter)
-app.use("/api/companies",companiesRouter)
-app.listen(port)
+app.use("/api/",listingsRouter)
+app.use("/api/companies/",companiesRouter)
+app.listen(port, () => console.log("Listening on port " + port))
