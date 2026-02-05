@@ -32,11 +32,11 @@ export async function getById(_req:Request, res:Response) {
 }
 
 export async function getByCompany(_req: Request, res: Response){
-    let companyId = _req.params?.company;
-    if (Array.isArray(companyId)) companyId = companyId[0];
-    if(!companyId) {
+    if(!_req.params?.company) {
         return res.status(400).json({error: "Missing company id"});
     }
+    let companyId = _req.params?.company;
+    if (Array.isArray(companyId)) companyId = companyId[0];
     const response = await service.getListingsByCompany(companyId);
     res.json(response);
 }
