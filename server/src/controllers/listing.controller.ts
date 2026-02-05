@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import * as service from '../services/application.service';
+import * as service from '../services/listing.service';
 
 export default function ApplicationController() {
     return ('TODO: ApplicationController');
