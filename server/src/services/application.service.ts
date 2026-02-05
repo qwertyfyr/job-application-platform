@@ -1,9 +1,18 @@
 import {prisma} from '../lib/prisma';
 
+
+// GET
 export function getListings() {
     return prisma.listing.findMany({orderBy: {createdAt: 'desc'}});
 }
+export function getListingById(id: number) {
+    return prisma.listing.findUnique({where: {id}});
+}
+export function getListingsByCompany(companyId: string) {
+    return prisma.listing.findMany({where: {companyId}, orderBy: {createdAt: 'desc'}});
+}
 
+// POST
 export function createListing(data: {company: string, title: string, position: string, remote? :boolean, location: string, link?:string}){
     // validation
     return prisma.listing.create({
@@ -20,6 +29,5 @@ export function createListing(data: {company: string, title: string, position: s
                 }
             }
         }
-
     });
 }

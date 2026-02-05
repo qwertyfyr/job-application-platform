@@ -15,3 +15,28 @@ export async function create(req:Request, res:Response) {
     const created = await service.createListing(req.body);
     res.status(201).json(created);
 }
+
+export async function getById(_req:Request, res:Response) {
+    const listingId = _req.params?.id
+    if(!listingId) {
+        return res.status(400).json({error: "Missing listing id"});
+    }
+
+    const parsedId = Number(listingId);
+    if(isNaN(parsedId)) {
+        return res.status(400).json({error: "Invalid listing id"});
+    }
+
+    const response = await service.getListingById(parsedId);
+    res.json(response);
+}
+
+export async function getByCompany(_req: Request, res: Response){
+    let companyId = _req.params?.company;
+    if (Array.isArray(companyId)) companyId = companyId[0];
+    if(!companyId) {
+        return res.status(400).json({error: "Missing company id"});
+    }
+    const response = await service.getListingsByCompany(companyId);
+    res.json(response);
+}
