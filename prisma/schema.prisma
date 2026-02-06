@@ -34,7 +34,8 @@ model Listing {
 }
 
 model Interview {
-  id        Int     @id @default(autoincrement())
-  listing   Listing @relation(fields: [listingId], references: [id])
+  id        Int      @id @default(autoincrement())
+  listing   Listing  @relation(fields: [listingId], references: [id])
   listingId Int
+  date      DateTime
 }

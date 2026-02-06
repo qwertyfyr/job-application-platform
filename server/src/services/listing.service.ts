@@ -31,3 +31,20 @@ export function createListing(data: {company: string, title: string, position: s
         }
     });
 }
+
+// PUT
+export function updateListing(data: {id: number, companyId?: string, title?: string, position?: string, remote? :boolean, location?: string, link?:string, jobOffer?: boolean}){
+    // validation
+    const {link, location, position, remote, title, jobOffer } = data;
+    return prisma.listing.update({
+        where: {id: data.id},
+        data: {
+            ...(title !== undefined && {title}),
+            ...(link !== undefined && {link}),
+            ...(location !== undefined && {location}),
+            ...(position !== undefined && {position}),
+            ...(remote !== undefined && {remote}),
+            ...(jobOffer !== undefined && {jobOffer}),
+        }
+    });
+}
