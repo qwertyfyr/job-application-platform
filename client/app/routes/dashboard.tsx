@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
-import { Dashboard } from "../dashboard/dashboard";
+import { Page } from "../dashboard/page";
+import { getListings } from "server/src/services/listing.service";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,6 +9,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+const listings = await getListings();
 export default function Home() {
-  return <Dashboard />;
+  return <Page />;
 }
