@@ -3,7 +3,7 @@ import {prisma} from '../lib/prisma';
 
 // GET
 export function getListings() {
-    return prisma.listing.findMany({orderBy: {createdAt: 'desc'}});
+    return prisma.listing.findMany({include:{company: true},orderBy: {createdAt: 'desc'}});
 }
 export function getListingById(id: number) {
     return prisma.listing.findUnique({where: {id}});
